@@ -1,0 +1,150 @@
+import java.util.Scanner;
+
+public class data_pemesan {
+  String nama,alamat,notelp,email,keterangan,j_jasa,p_jasa;
+  int pilihJasa,pilihTeam,b_Penyedia,b_Alat,b_Bahan,b_Transportasi,t_Biaya;
+
+   public void dataPeserta() {
+     Scanner input = new Scanner(System.in);
+
+     System.out.println("--------------------oOo-------------------");
+     System.out.println("*Masukan Data Pemesanan*");
+     System.out.print("Masukan Nama: ");
+     this.nama = input.nextLine();
+
+     System.out.print("Masukan Alamat: ");
+     this.alamat = input.nextLine();
+
+     System.out.print("Masukan No.Telp:" );
+     this.notelp = input.nextLine();
+
+     System.out.print("Masukan Email: ");
+     this.email = input.nextLine();
+   }
+
+   public void jenisJasa() {
+       System.out.println("*Jenis Jasa*");
+       System.out.println("1. Cuci Mobil");
+       System.out.println("2. Salon Mobil Interior");
+       System.out.println("3. Salon Mobil Exterior");
+
+       Scanner input = new Scanner(System.in);
+
+       System.out.print("Pilih Jasa: ");
+       this.pilihJasa = input.nextInt();
+
+       if(this.pilihJasa == 1) {
+          this.j_jasa = "Cuci Mobil";
+       } else if(this.pilihJasa == 2) {
+          this.j_jasa = "Salon Mobil Interior";
+       } else if(this.pilihJasa == 3) {
+          this.j_jasa = "Salon Mobil Exterior";
+       } else {
+          System.out.print("Jenis Jasa Tidak Tersedia");
+       }
+   }
+   public void teamPenyediaJasa() {
+       System.out.println("*Team Penyedia Jasa*");
+       System.out.println("1. Team Sea [2 Orang]");
+       System.out.println("2. Team Mountain [4 Orang]");
+       System.out.println("3. Team Forest [5 Orang]");
+
+      Scanner input = new Scanner(System.in);
+
+       System.out.print("Pilih Jasa: ");
+       this.pilihTeam = input.nextInt();
+
+       if(this.pilihTeam == 1) {
+          this.p_jasa = "Team Sea [2 Orang]";
+       } else if(this.pilihTeam == 2) {
+          this.p_jasa = "Team Mountain [4 Orang]";
+       } else if(this.pilihTeam == 3) {
+          this.p_jasa = "Team Forest [5 Orang]";
+       } else {
+          System.out.print("Team Layanan Jasa Tidak Tersedia");
+       }
+   }
+
+   public void keteranganPemesanan() {
+    Scanner input = new Scanner(System.in);
+
+    System.out.print("Berikan Keterangan Pemesanan: ");
+    this.keterangan = input.nextLine();
+  }
+
+   public void biayaPenyediaJasa() {
+     Scanner input = new Scanner(System.in);
+
+     System.out.print("Masukan Biaya Penyedia Jasa Rp. ");
+     this.b_Penyedia = input.nextInt();
+
+     System.out.print("Masukan Biaya Jasa Alat Rp. ");
+     this.b_Alat = input.nextInt();
+
+     System.out.print("Masukan Biaya Bahan Jasa Rp. " );
+     this.b_Bahan = input.nextInt();
+
+     System.out.print("Masukan Biaya Transportasi Rp. ");
+     this.b_Transportasi = input.nextInt();
+
+    System.out.println("--------------------oOo-------------------");
+   }
+}
+
+public class Main extends data_pemesan {
+
+   public Main() {
+       super();
+    }
+
+   public String nama()  {
+    return this.nama;
+   }
+
+   public String tampilkanJenisJasa() {
+    return this.j_jasa;
+   }
+
+   public String tampilkanPenyediaJasa() {
+    return this.p_jasa;
+   }
+
+   public String tampilkanKeterangan() {
+     return this.keterangan;
+   }
+
+   public int jumlahkanBiayaJasa() {
+      this.t_Biaya = this.b_Penyedia + this.b_Bahan + this.b_Alat + this.b_Transportasi;
+      return this.t_Biaya;
+   }
+}
+
+public class transaksi
+{
+   public static void main(String [] args) {
+      Main data = new Main();
+
+      System.out.println("--- Car Cleaning.. Anda Pesan Kami Datang ---");
+      System.out.println("============================================");
+      System.out.println("");
+
+      data.dataPeserta();
+      System.out.print("\n");
+      data.jenisJasa();
+      System.out.print("\n");
+      data.teamPenyediaJasa();
+      System.out.print("\n");
+      data.keteranganPemesanan();
+      System.out.print("\n");
+      data.biayaPenyediaJasa();
+
+      System.out.println("=========================================");
+      System.out.println("Jasa yang di Pesan: " + data.tampilkanJenisJasa());
+      System.out.println("Nama Penyedia Jasa: " + data.tampilkanPenyediaJasa());
+      System.out.println("Keterangan: " + data.tampilkanKeterangan());
+      System.out.println("");
+      System.out.println("Total Biaya yang di Bayar Pemesanan Rp. " + data.jumlahkanBiayaJasa());
+      System.out.println("");
+      System.out.println("Salam Bersih " + data.nama() + " Terimakasih");
+   }
+}
